@@ -12,6 +12,7 @@ import { SpinnerComponent } from './shared/spinner.component';
 
 import { PostsModule } from './posts/posts.module';
 import { UsersModule } from './users/users.module';  
+import { JsonModule } from './json/json.module';  
 
 import { customRouting } from './navbar.routing';
 
@@ -25,6 +26,7 @@ import { PreventUnsavedChangesGuard } from './prevent-unsaved-changes-guard.serv
     BrowserModule,
     PostsModule,
     UsersModule,
+    JsonModule,
     customRouting  //app parent should be last
   ],
   //what components directives and pipes are part of this

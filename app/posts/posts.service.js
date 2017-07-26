@@ -27,6 +27,17 @@ var PostsService = (function () {
         return this._http.get(this._url + "/posts/" + id + "/comments")
             .map(function (res) { return res.json(); });
     };
+    PostsService.prototype.getPostsHead = function () {
+        var headers = new http_1.Headers({
+            "access-control-request-method": "GET",
+            "authorization": "basic token"
+        });
+        var options = new http_1.RequestOptions({
+            headers: headers
+        });
+        return this._http.get(this._url, options)
+            .map(function (res) { return res.json(); });
+    };
     PostsService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])

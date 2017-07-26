@@ -1,5 +1,6 @@
 import {Router, RouterModule} from '@angular/router';
 
+import{JsonComponent} from './json/json.component';
 import{PostsComponent} from './posts/posts.component';
 import{UsersComponent} from './users/users.component';
 import{UsersNewComponent} from './users/users-new.component';
@@ -40,5 +41,10 @@ export const customRouting = RouterModule.forRoot([
         component: PostsComponent, 
         canDeactivate: [PreventUnsavedChangesGuard]
     },
+    {
+        path: 'json', 
+        component: JsonComponent, 
+        canDeactivate: [PreventUnsavedChangesGuard]
+    },    
     {path: '**', component: NotFoundComponent}
 ]);

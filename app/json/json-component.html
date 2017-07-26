@@ -1,0 +1,42 @@
+    <h1>{{ title }}</h1>
+ 
+    <div class = "row">
+
+        <div class="col-md-12">
+            <div *ngIf="!requestedNewJson"  class="panel panel-default">         
+                <div *ngFor="let u of users" class="media">
+                    <div class="media-body">
+                        <h4 class="media-heading">{{ u.name }}</h4>
+                    </div>
+                </div>                
+            </div>
+
+            <div *ngIf="requestedNewJson"  class="panel panel-default">         
+                <div *ngFor="let u of users" class="media">
+                    <div class="media-body">
+                        <h3> {{ u | json }} </h3>
+                    </div>
+                </div>                
+            </div>            
+        </div>        
+    </div> 
+    
+ <div class = "row">
+    <form >
+        <fieldset>
+                <div class="form-group">
+                    <label>Url</label>
+                    <input
+                        class = "form-control"
+                        id="url" 
+                        type="text"
+                        [(ngModel)]="url"
+                        name = "url">
+                </div>                                               
+        </fieldset>
+
+
+        <button (click)="getNewJson()" class="btn btn-primay" 
+            type="submit" >Get New Json</button>           
+    </form>
+</div>

@@ -1,5 +1,6 @@
 "use strict";
 var router_1 = require('@angular/router');
+var json_component_1 = require('./json/json.component');
 var posts_component_1 = require('./posts/posts.component');
 var users_component_1 = require('./users/users.component');
 var users_new_component_1 = require('./users/users-new.component');
@@ -35,6 +36,11 @@ exports.customRouting = router_1.RouterModule.forRoot([
     {
         path: 'posts',
         component: posts_component_1.PostsComponent,
+        canDeactivate: [prevent_unsaved_changes_guard_service_1.PreventUnsavedChangesGuard]
+    },
+    {
+        path: 'json',
+        component: json_component_1.JsonComponent,
         canDeactivate: [prevent_unsaved_changes_guard_service_1.PreventUnsavedChangesGuard]
     },
     { path: '**', component: not_found_component_1.NotFoundComponent }

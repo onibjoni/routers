@@ -16,6 +16,7 @@ var home_component_1 = require('./home.component');
 var not_found_component_1 = require('./not-found.component');
 var posts_module_1 = require('./posts/posts.module');
 var users_module_1 = require('./users/users.module');
+var json_module_1 = require('./json/json.module');
 var navbar_routing_1 = require('./navbar.routing');
 var auth_service_1 = require('./auth.service');
 var auth_guard_service_1 = require('./auth-guard.service');
@@ -25,17 +26,23 @@ var NavBarModule = (function () {
     }
     NavBarModule = __decorate([
         core_1.NgModule({
+            //What modules this module is dependent upon
             imports: [
                 platform_browser_1.BrowserModule,
                 posts_module_1.PostsModule,
                 users_module_1.UsersModule,
+                json_module_1.JsonModule,
                 navbar_routing_1.customRouting //app parent should be last
             ],
+            //what components directives and pipes are part of this
             declarations: [
                 navbar_component_1.NavBarComponent,
                 home_component_1.HomeComponent,
                 not_found_component_1.NotFoundComponent
             ],
+            //What this module exports
+            exports: [],
+            //What providers this module needs
             providers: [
                 auth_service_1.AuthService,
                 auth_guard_service_1.AuthGuard,
