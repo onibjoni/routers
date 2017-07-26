@@ -16,7 +16,7 @@ export class JsonService {
         let headers = new Headers({'Content-Type' : 'application/json'});
         let options = new RequestOptions({headers: headers});
 
-        return this._http.post(this._url + "/posts", 
+        return this._http.post(this._url, 
             { username: "name", email: "email" }, 
             options).map(res => res.json());
     }

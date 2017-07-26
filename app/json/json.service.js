@@ -18,7 +18,7 @@ var JsonService = (function () {
     JsonService.prototype.postJsonData = function (url, jsonData) {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         var options = new http_1.RequestOptions({ headers: headers });
-        return this._http.post(this._url + "/posts", { username: "name", email: "email" }, options).map(function (res) { return res.json(); });
+        return this._http.post(this._url, { username: "name", email: "email" }, options).map(function (res) { return res.json(); });
     };
     JsonService.prototype.getJsonData = function (url) {
         return this._http.get(url == "" ? this._url + "/users" : url)

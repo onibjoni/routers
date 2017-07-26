@@ -19,7 +19,7 @@ export class JsonComponent implements  OnInit{
     requestedNewJson;
     title;  
     url;
-    
+
     constructor(private _jsonService : JsonService) {
         this.title = "Json Data";
         this.requestedNewJson = false;
@@ -35,9 +35,7 @@ export class JsonComponent implements  OnInit{
             }, 
             error => { /* do nothing on error for now */},
             () => { /* do nothing on completion for now */ });      
-    
     }
-
 
     hasUnsavedChanges(){
         return false;
@@ -48,9 +46,8 @@ export class JsonComponent implements  OnInit{
     }
 
     getNewJson(){
-
         //call edit user if needed
-        console.log("Url is: " + this.url)
+        console.log("Getting Url is: " + this.url)
         this.userSubscription = this._jsonService.getJsonData(this.url)
             .subscribe(data => {
                 this.users = data;
@@ -66,5 +63,24 @@ export class JsonComponent implements  OnInit{
             () => { /* do nothing on completion for now */ }); 
             
     }
+
+     postNewJson(){
+        //call edit user if needed
+        console.log("Postsing Url is: " + this.url)
+        this.userSubscription = this._jsonService.postJsonData(this.url)
+            .subscribe(data => {
+                this.users = data;
+                this.title = "Got New Json Data";
+                this.requestedNewJson = true;
+            }, 
+            error => { 
+                console.log("Failed to retrieve url...");
+                this.requestedNewJson = false;
+                this.title = "Tried to get New Json Data";
+                this.url = "";                
+            },
+            () => { /* do nothing on completion for now */ }); 
+            
+    }   
     
 }

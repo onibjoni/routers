@@ -34,8 +34,24 @@ var JsonComponent = (function () {
     JsonComponent.prototype.getNewJson = function () {
         var _this = this;
         //call edit user if needed
-        console.log("Url is: " + this.url);
+        console.log("Getting Url is: " + this.url);
         this.userSubscription = this._jsonService.getJsonData(this.url)
+            .subscribe(function (data) {
+            _this.users = data;
+            _this.title = "Got New Json Data";
+            _this.requestedNewJson = true;
+        }, function (error) {
+            console.log("Failed to retrieve url...");
+            _this.requestedNewJson = false;
+            _this.title = "Tried to get New Json Data";
+            _this.url = "";
+        }, function () { });
+    };
+    JsonComponent.prototype.postNewJson = function () {
+        var _this = this;
+        //call edit user if needed
+        console.log("Postsing Url is: " + this.url);
+        this.userSubscription = this._jsonService.postJsonData(this.url)
             .subscribe(function (data) {
             _this.users = data;
             _this.title = "Got New Json Data";
