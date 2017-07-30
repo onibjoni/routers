@@ -1,0 +1,62 @@
+{{ GEO Profile Page Layout }}
+<profile-page>
+    <!-- vm.geocode = StateManagerService.selectedGeographies[0].geoid;
+         vm.state = StateManagerService.selectedGeographies[0].name;
+
+         dataService.getAtGlance (vm.geocode).then(function(result){
+            ** 1) Endpoint to be replaced by Search Platform App **
+            vm.geodata = initialize();
+         }, function(response){
+             log error
+         });
+
+         vm.metaData = GeoProfileService.getMetaData();
+            //Generic metadata static json file with metrics ie.
+            {"enabled" : true, "topic" : Education, "type" : chart}
+            ** 2) Endpoint to be replaced by Search Platform App **
+    -->
+
+    <glance vm.geodata>
+        <!-- primarily hard coded data with vm.geodata attributes plugged in 
+        -->
+        <map-glance>
+            <!-- Gets Map based on ID and sets map view-->
+        </map-glance>
+    </glance>
+
+    <highlight-section vm.geocode>
+
+        <!-- vm.highlights = GeoProfileService.getHighlightData(vm.geo.id)
+                dataService.getQuickstats(geoid, '', 'highlights')
+            ** 3) Endpoint to be replaced by Search Platform App **
+        -->
+
+        <highlight ng-repeat="highlight in vm.highlights">
+            <!-- vm.values in highlight section -->
+        </highlight>
+
+    </highlight-section>
+
+    <hr> 
+
+    <section>
+        <article ng-repeat="metric in vm.metadata.metrics | filter: {enabled : true}">
+            <metric metric vm.geodata metric.topic metric.type>
+                <!--  
+                    Static data from vm plus chart info based on metrics
+                    
+                    vm.data = GeoProfileService.getMetricData(vm.geoid, vm.topic);
+                        dataService.getQuickstats(geoid, topic, '');
+                        sets vm data (i.e. format, source, sourceLink, title, etc)
+                    vm.chart = GeoProfileService.getDataVisualization(vm.geoid, vm.topic)
+                        dataService.getDataVisualization(geoid, topic, '');
+                        This only sets the vm.chart information
+                    ** 4) Endpoint to be replace by Search Platform App **
+                -->
+                <chart ng-if="vm.type != 'map'"></chart>
+                <map-chart ng-if="vm.type == 'map'"></map-chart>
+            </metric>
+        </article>
+    </section>
+
+</profile-page>

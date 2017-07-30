@@ -50,12 +50,13 @@ var JsonComponent = (function () {
     JsonComponent.prototype.postNewJson = function () {
         var _this = this;
         //call edit user if needed
-        console.log("Postsing Url is: " + this.url);
-        this.userSubscription = this._jsonService.postJsonData(this.url)
+        this.userSubscription = this._jsonService.postJsonDataPassThrough()
             .subscribe(function (data) {
             _this.users = data;
             _this.title = "Got New Json Data";
             _this.requestedNewJson = true;
+            console.log("got new data...");
+            console.log(data);
         }, function (error) {
             console.log("Failed to retrieve url...");
             _this.requestedNewJson = false;

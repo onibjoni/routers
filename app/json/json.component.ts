@@ -14,7 +14,7 @@ import { JsonData } from './jsonData';
 })
 export class JsonComponent implements  OnInit{
     userSubscription;
-    users;
+    users;  //can be any JSON format when selecting post - passThrough handles type
 
     requestedNewJson;
     title;  
@@ -66,12 +66,13 @@ export class JsonComponent implements  OnInit{
 
      postNewJson(){
         //call edit user if needed
-        console.log("Postsing Url is: " + this.url)
-        this.userSubscription = this._jsonService.postJsonData(this.url)
+        this.userSubscription = this._jsonService.postJsonDataPassThrough()
             .subscribe(data => {
                 this.users = data;
                 this.title = "Got New Json Data";
                 this.requestedNewJson = true;
+                console.log("got new data...");
+                console.log(data);
             }, 
             error => { 
                 console.log("Failed to retrieve url...");

@@ -14,11 +14,16 @@ var JsonService = (function () {
     function JsonService(_http) {
         this._http = _http;
         this._url = "http://jsonplaceholder.typicode.com";
+        this._passThrough = "http://localhost:8080/cmjira/passThrough.action";
     }
-    JsonService.prototype.postJsonData = function (url, jsonData) {
+    JsonService.prototype.postJsonDataPassThrough = function () {
+        return this._http.get(this._passThrough)
+            .map(function (res) { return res.json(); });
+    };
+    JsonService.prototype.postJsonData = function (urlIn, jsonData) {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         var options = new http_1.RequestOptions({ headers: headers });
-        return this._http.post(this._url, { username: "name", email: "email" }, options).map(function (res) { return res.json(); });
+        return this._http.post(urlIn, { username: "name", email: "email" }, options).map(function (res) { return res.json(); });
     };
     JsonService.prototype.getJsonData = function (url) {
         return this._http.get(url == "" ? this._url + "/users" : url)
